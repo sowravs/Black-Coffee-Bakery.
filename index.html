@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Coffee Bakery | Luxury & Elegance</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .navbar-brand img {
+      border: 2px solid #271f10;
+      box-shadow: 0 0 10px rgba(182, 141, 64, 0.6);
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-brand img:hover {
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+    /* ---------- Global Styles ---------- */
+    body {
+      background-color: #040404;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Playfair Display', serif;
+      color: #f8e0ae;
+      letter-spacing: 1px;
+    }
+
+    .text-gold {
+      color: #fffffe;
+    }
+
+    .text-cream {
+      color: #d6a02b;
+    }
+
+    /* ---------- Navbar ---------- */
+    .navbar {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226, 182, 89, 0.2);
+    }
+
+    .navbar-dark .nav-link {
+      color: #fffffe;
+      margin: 0 10px;
+      transition: 0.4s;
+    }
+
+    .navbar-dark .nav-link:hover {
+      color: #E2B659;
+      text-shadow: 0 0 10px #E2B659;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn-gold {
+      background: linear-gradient(135deg, #E2B659, #B58A30);
+      color: #0A0A0A;
+      border: none;
+      transition: all 0.4s ease;
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px #E2B659;
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      color: #FFF7E6;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.9));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      animation: fadeInUp 2s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---------- Shimmer Effect ---------- */
+    .text-gold {
+      background: linear-gradient(90deg, #d4af37, #f9e79f, #b8860b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 15px rgba(182, 171, 136, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .text-gold:hover {
+      text-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+      transform: scale(1.03);
+    }
+
+
+    @keyframes shimmer {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    /* ---------- Section ---------- */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-bg {
+      background: linear-gradient(180deg, rgba(14, 14, 14, 1) 0%, rgba(24, 24, 24, 1) 100%);
+      border-top: 1px solid rgba(226, 182, 89, 0.2);
+    }
+
+    /* ---------- Cards ---------- */
+    .product-card {
+      background: #141414;
+      border: 1px solid rgba(226, 182, 89, 0.3);
+      border-radius: 20px;
+      transition: 0.4s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px rgba(226, 182, 89, 0.3);
+    }
+
+    /* ---------- Form ---------- */
+    .form-control,
+    .form-select,
+    textarea {
+      background: #111;
+      border: 1px solid rgba(226, 182, 89, 0.3);
+      color: #FFF7E6;
+      border-radius: 10px;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: #E2B659;
+      box-shadow: none;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #000;
+      padding: 50px 0;
+      text-align: center;
+      border-top: 1px solid rgba(226, 182, 89, 0.2);
+    }
+
+    /* ---------- Preloader ---------- */
+    #preloader {
+      background: #0A0A0A;
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coffee-loader {
+      font-size: 3rem;
+      animation: steam 2s infinite ease-in-out;
+      color: #E2B659;
+    }
+
+    .shimmer {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #feb200;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .shimmer::after {
+      content: '';
+      position: absolute;
+      left: 1px;
+      bottom: -5px;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #0a0700, #f0d27a);
+      border-radius: 2px;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, #fffaf3, #f5ebe0);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Optional subtle overlay for depth */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Hero Content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Heading */
+    .shimmer {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.6rem;
+      color: #cdc415;
+      text-shadow: 0 2px 6px rgba(174, 101, 101, 0.1);
+    }
+
+    /* Subtext */
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #5a4a3b;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Coffee Cup */
+    .coffee-wrapper {
+      position: relative;
+      display: inline-block;
+      transition: transform 0.3s ease;
+
+    }
+
+    .coffee-wrapper:hover {
+      transform: translateY(-50px);
+    }
+
+
+    .hero-image {
+      width: 200px;
+      animation: float 3s ease-in-out infinite, rotateCup 10s linear infinite;
+      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* Slow rotation for added elegance */
+    @keyframes rotateCup {
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(2deg);
+      }
+    }
+
+    /* Golden Button */
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+
+
+
+
+    @keyframes steam {
+
+      0%,
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      50% {
+        transform: translateY(-10px);
+        opacity: 0.6;
+      }
+    }
+
+    .contact-section {
+      /* background: linear-gradient(to bottom right, #fffaf3, #f5ebe0); */
+      background-color: #141414;
+      color: #3a2e1f;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .text-gold {
+      color: #B68D40;
+    }
+
+    .social-icons a:hover {
+      color: #000;
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+    }
+    /* ---------------- Responsive Design ---------------- */
+
+/* 📱 Mobile screens (up to 767px) */
+@media (max-width: 767px) {
+
+  .hero {
+    height: auto;
+    padding: 120px 20px 80px;
+    background-position: center;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    color: #d5d5d5;
+  }
+
+  .hero-image {
+    width: 140px;
+    margin-top: 20px;
+  }
+
+  .navbar-brand span {
+    font-size: 1rem;
+  }
+
+  .navbar-brand img {
+    width: 35px;
+    height: 35px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .product-card img {
+    height: auto;
+    max-height: 160px;
+    object-fit: cover;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+}
+
+
+/* 💻 Tablets (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .hero {
+    height: 80vh;
+    padding: 100px 40px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.05rem;
+  }
+
+  .coffee-wrapper:hover {
+    transform: translateY(-20px);
+  }
+
+  .product-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* 🖥️ Desktop (above 1024px) */
+@media (min-width: 1025px) {
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .hero-image {
+    width: 220px;
+  }
+}
+/* ---------------- Responsive Tweaks ---------------- */
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+  #shop h2 {
+    font-size: 1.8rem;
+  }
+
+  .product-card img {
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .product-card h5 {
+    font-size: 1.05rem;
+  }
+
+  .product-card p {
+    font-size: 0.9rem;
+  }
+
+  .contact-card p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #shop h2 {
+    font-size: 2rem;
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+
+  .contact-card {
+    padding: 2rem;
+  }
+}
+
+/* Desktops (above 1024px) */
+@media (min-width: 1025px) {
+  #shop h2 {
+    font-size: 2.4rem;
+  }
+
+  .product-card img {
+    height: 220px;
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="coffee-loader">☕</div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.png" alt="Black Coffee Bakery Logo" width="45" height="45" class="me-2 rounded-circle">
+        <span class="fw-bold fs-4 text-gold">Black Coffee Bakery</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#shop" class="nav-link">Shop</a></li>
+          <li class="nav-item"><a href="order.html" class="nav-link">Order</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br>
+<br>
+  <!-- HERO -->
+  <section id="home" class="hero d-flex align-items-center justify-content-center text-center">
+    <div class="hero-content" data-aos="fade-up">
+      <h1 class="display-4 shimmer mb-3">Freshly Brewed Elegance Every Morning.</h1>
+      <p class="lead text-muted mb-4">Where every cup tells a story of warmth and craftsmanship.</p>
+      <div class="coffee-wrapper">
+        <img src="coffee.png" alt="Coffee Cup" class="hero-image">
+      </div>
+      <a href="order.html" class="btn btn-gold mt-4 px-4 py-2">Order Now</a>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="section-bg text-center" data-aos="fade-up">
+    <div class="container">
+      <h2 class="shimmer mb-4">Our Story</h2>
+      <p class="lead mx-auto" style="max-width:700px;">At <span class="text-gold">Black Coffee Bakery</span>, we blend
+        the aroma of freshly brewed coffee with the warmth of artisan baking. Every pastry, every sip, is crafted to
+        perfection with passion and care.</p>
+      <blockquote class="mt-4 text-gold fst-italic">“Where every cup and crumb tells a story.”</blockquote>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop" class="text-center" data-aos="fade-up">
+    <div class="container">
+      <h2 class="shimmer mb-5">Our Favorites</h2>
+      <div class="row g-4">
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="Croissant.jpg" class="img-fluid rounded mb-3">
+            <h5>Croissant</h5>
+            <p>₹80</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="cookies.jpg" class="img-fluid rounded mb-3">
+            <h5>cookies</h5>
+            <p>₹120</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="Chocolate Cake.jpg" class="img-fluid rounded mb-3">
+            <h5>Chocolate Cake</h5>
+            <p>₹70</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="Fresh Bread.jpg" class="img-fluid rounded mb-3">
+            <h5>Fresh Bread</h5>
+            <p>₹90</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="shop" class=" text-center" data-aos="fade-up">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="burgur.jpg" class="img-fluid rounded mb-3">
+            <h5>Berger</h5>
+            <p>₹99</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="cake.jpg" class="img-fluid rounded mb-3">
+            <h5>Cakes</h5>
+            <p>₹ kg 450</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="shwarma.jpg" class="img-fluid rounded mb-3">
+            <h5>shawarma</h5>
+            <p>₹100</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <div class="product-card p-3">
+            <img src="puffs.jpg" class="img-fluid rounded mb-3">
+            <h5>Puffs</h5>
+            <p>20</p>
+            <button class="btn btn-gold btn-sm">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section>
+
+
+    <!-- Shop Section -->
+<section id="shop" class="text-center py-5" data-aos="fade-up">
+  <div class="container">
+    <h2 class="shimmer mb-5">Our Signature Items</h2>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Espresso -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="product-card p-3 h-100 shadow-sm rounded">
+          <img src="Espresso.jpg" class="img-fluid rounded mb-3" alt="Espresso Coffee">
+          <h5>Espresso</h5>
+          <p>Signature Espresso Essence: Bold, smooth, and perfectly balanced with a golden crema.</p>
+          <p class="fw-bold">₹60</p>
+          <button class="btn btn-gold btn-sm mt-auto">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Herbal Tea -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="product-card p-3 h-100 shadow-sm rounded">
+          <img src="herbal tea.jpg" class="img-fluid rounded mb-3" alt="Herbal Tea">
+          <h5>Honey-Mint Herbal Tea</h5>
+          <p>Honey-Sweetened Herbal Tea with Mint: Relaxing, crafted with local honey and garden herbs.</p>
+          <p class="fw-bold">₹70</p>
+          <button class="btn btn-gold btn-sm mt-auto">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Caramel Black Tea -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="product-card p-3 h-100 shadow-sm rounded">
+          <img src="Caramel Elegance Black Tea.jpg" class="img-fluid rounded mb-3" alt="Caramel Black Tea">
+          <h5>Caramel Elegance Black Tea</h5>
+          <p>Premium Ceylon Black Tea infused with rich caramel and molasses notes for an indulgent finish.</p>
+          <p class="fw-bold">₹90</p>
+          <button class="btn btn-gold btn-sm mt-auto">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Black Coffee -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="product-card p-3 h-100 shadow-sm rounded">
+          <img src="black tea.jpg" class="img-fluid rounded mb-3" alt="Black Coffee">
+          <h5>Black Coffee</h5>
+          <p>Golden Leaf Black Coffee: Deep, rich flavor with a touch of natural sweetness and warmth.</p>
+          <p class="fw-bold">₹90</p>
+          <button class="btn btn-gold btn-sm mt-auto">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section py-5 text-center" data-aos="fade-up">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-gold">Get in Touch</h2>
+    <p class="mb-5 text-secondary">
+      We'd love to hear from you! Whether it’s feedback, a special order, or just to say hello — reach out anytime.
+    </p>
+
+    <div class="row justify-content-center g-4">
+      <!-- Phone -->
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="contact-card p-4 shadow-sm rounded h-100">
+          <i class="bi bi-telephone-fill fs-3 text-gold mb-2"></i>
+          <h5>Phone</h5>
+          <p>📞 +91 6235704421</p>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="contact-card p-4 shadow-sm rounded h-100">
+          <i class="bi bi-envelope-fill fs-3 text-gold mb-2"></i>
+          <h5>Email</h5>
+          <p>📧 hello@blackcoffeebakery.com</p>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="contact-card p-4 shadow-sm rounded h-100">
+          <i class="bi bi-geo-alt-fill fs-3 text-gold mb-2"></i>
+          <h5>Location</h5>
+          <p>Black Coffee Cakes, Bakes & Co-Operative Bank, Velanthavalam, Palakkad, Kerala, PIN 678557</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+          <div class="social-icons mt-4">
+            <a href="#" class="me-3"><i class="bi bi-instagram fs-4 text-gold"></i></a>
+            <a href="#" class="me-3"><i class="bi bi-facebook fs-4 text-gold"></i></a>
+            <a href="#"><i class="bi bi-whatsapp fs-4 text-gold"></i></a>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <div class="mt-4">
+        <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.493664874307!2d76.8591253153344!3d10.816052892301888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba843a59c6fef21%3A0x2bfa68f361f46d60!2sBLACK%20COFFEE%20-%20CAKES%2C%20BAKES%20%26%20COFFEE%20SHOP!5e0!3m2!1sen!2sin!4v1730978300000!5m2!1sen!2sin"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="text-cream text-center py-3 mt-5 border-top border-gold">
+        <p class="mb-0">
+          &copy; 2025 <span class="text-gold fw-semibold">Black Coffee Bakery</span> |
+          All Rights Reserved | Designed by <span class="text-gold">Sowrav.S</span>
+        </p>
+      </footer>
+
+      <!-- Scripts -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+        AOS.init({ duration: 1000, once: true });
+        window.addEventListener("load", () => {
+          document.getElementById("preloader").style.display = "none";
+        });
+      </script>
+</body>
+
+</html>

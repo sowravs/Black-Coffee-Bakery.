@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order | Black Coffee Bakery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #4B2E24;
+      --bg-dark: #2E1C14;
+      --text-light: #EADCC2;
+      --accent-gold: #B68D40;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+      padding-bottom: 80px;
+    }
+
+    .navbar {
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226,182,89,0.2);
+    }
+
+    .navbar-dark .nav-link {
+      color: #FFF7E6;
+      margin: 0 10px;
+      transition: 0.4s;
+    }
+
+    .navbar-dark .nav-link:hover {
+      color: #E2B659;
+      text-shadow: 0 0 10px #E2B659;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    h1 {
+      color: var(--accent-gold);
+      text-align: center;
+      margin-top: 90px;
+    }
+
+    .text-gold {
+      background: linear-gradient(90deg, #d4af37, #f9e79f, #b8860b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .text-gold:hover {
+      text-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+      transform: scale(1.03);
+    }
+
+    /* Product Cards */
+    .product-card {
+      background-color: var(--bg-dark);
+      border: 1px solid var(--accent-gold);
+      border-radius: 12px;
+      text-align: center;
+      padding: 15px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px var(--accent-gold);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .btn-qty {
+      background-color: var(--accent-gold);
+      color: var(--bg-dark);
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .btn-submit {
+      background-color: var(--accent-gold);
+      border: none;
+      color: var(--bg-dark);
+      padding: 12px 40px;
+      border-radius: 50px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .btn-submit:hover {
+      background-color: #d6ad52;
+      box-shadow: 0 0 10px var(--accent-gold);
+    }
+
+    .bill-box {
+      background-color: var(--bg-dark);
+      border: 1px solid var(--accent-gold);
+      border-radius: 10px;
+      padding: 25px;
+      color: var(--text-light);
+      margin-top: 40px;
+    }
+
+    footer {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    /* ===========================
+       Responsive Adjustments
+       =========================== */
+
+    /* 📱 Mobile */
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 1.8rem;
+        margin-top: 80px;
+      }
+
+      .product-img {
+        height: 150px;
+      }
+
+      .product-card {
+        padding: 10px;
+      }
+
+      .bill-box {
+        padding: 15px;
+      }
+
+      footer {
+        font-size: 0.9rem;
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+
+    /* 📲 Tablet */
+    @media (min-width: 577px) and (max-width: 991px) {
+      .product-img {
+        height: 160px;
+      }
+
+      .btn-submit {
+        width: 100%;
+      }
+    }
+
+    /* 💻 Desktop */
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1200px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.png" alt="Black Coffee Bakery Logo" width="45" height="45" class="me-2 rounded-circle">
+        <span class="fw-bold fs-4 text-gold">Black Coffee Bakery</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="index.html#shop" class="nav-link">Shop</a></li>
+          <li class="nav-item"><a href="order.html" class="nav-link active">Order</a></li>
+          <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+
+  <!-- Title -->
+  <h1>Order Your Favorites</h1>
+
+  <!-- Product Grid -->
+  <div class="container my-5">
+    <div class="row g-4" id="productGrid"></div>
+  </div>
+
+  <!-- Bill Summary -->
+  <div class="container">
+    <div class="bill-box">
+      <h3>Bill Summary</h3>
+      <p>Subtotal: ₹<span id="subtotal">0</span></p>
+      <p>GST (5%): ₹<span id="gst">0</span></p>
+      <p>Delivery Charge: ₹<span id="delivery">50</span></p>
+      <hr>
+      <h4>Total Amount: ₹<span id="total">0</span></h4>
+    </div>
+  </div>
+
+  <!-- Order Form -->
+  <div class="container mt-5 mb-5">
+    <h2>Customer Details</h2>
+    <form id="orderForm" class="mt-3">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input type="text" class="form-control" placeholder="Full Name" required>
+        </div>
+        <div class="col-md-6">
+          <input type="number" class="form-control" placeholder="Phone Number" required>
+        </div>
+        <div class="col-md-12">
+          <textarea class="form-control" placeholder="Delivery Address" rows="3" required></textarea>
+        </div>
+        <div class="col-md-6">
+          <select class="form-select" required>
+            <option value="">Select Delivery Mode</option>
+            <option>Home Delivery</option>
+            <option>Pickup</option>
+          </select>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn-submit">Place Order</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Black Coffee Bakery | Designed with Love ☕
+  </footer>
+
+  <script>
+    const products = [
+      { name: "Espresso", price: 60, img: "Espresso.jpg" },
+      { name: "Tea", price: 50, img: "tea.jpg" },
+      { name: "Honey-Mint Herbal Tea", price: 90, img: "herbal tea.jpg" },
+      { name: "Caramel Elegance Black Tea", price: 90, img: "Caramel Elegance Black Tea.jpg" },
+      { name: "Croissant", price: 80, img: "Croissant.jpg" },
+      { name: "Cookies", price: 120, img: "cookies.jpg" },
+      { name: "Chocolate Cake", price: 70, img: "Chocolate Cake.jpg" },
+      { name: "Fresh Bread", price: 90, img: "Fresh Bread.jpg" },
+      { name: "Shawarma", price: 100, img: "shwarma.jpg" },
+      { name: "Puffs", price: 20, img: "puffs.jpg" },
+      { name: "Burger", price: 99, img: "burgur.jpg" },
+      { name: "Chicken Roll", price: 35, img: "chicken rool.jpg" }
+    ];
+
+    const qtys = new Array(products.length).fill(0);
+
+    const grid = document.getElementById("productGrid");
+    grid.innerHTML = products.map((p, i) => `
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="product-card" data-aos="fade-up" data-aos-delay="${i * 100}">
+          <img src="${p.img}" alt="${p.name}" class="product-img">
+          <h5>${p.name}</h5>
+          <p>₹${p.price}</p>
+          <div class="d-flex justify-content-center align-items-center gap-2">
+            <button class="btn-qty" onclick="changeQty(${i}, -1)">-</button>
+            <span id="qty${i}">0</span>
+            <button class="btn-qty" onclick="changeQty(${i}, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    function changeQty(index, change) {
+      qtys[index] = Math.max(0, qtys[index] + change);
+      document.getElementById('qty' + index).innerText = qtys[index];
+      updateBill();
+    }
+
+    function updateBill() {
+      const subtotal = qtys.reduce((sum, qty, i) => sum + qty * products[i].price, 0);
+      const gst = subtotal * 0.05;
+      const delivery = subtotal > 0 ? 50 : 0;
+      const total = subtotal + gst + delivery;
+      document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+      document.getElementById('gst').innerText = gst.toFixed(2);
+      document.getElementById('delivery').innerText = delivery.toFixed(2);
+      document.getElementById('total').innerText = total.toFixed(2);
+    }
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('✅ Your order has been placed successfully!\nThank you for choosing Black Coffee Bakery ☕');
+      this.reset();
+      qtys.fill(0);
+      updateBill();
+      document.querySelectorAll('[id^=qty]').forEach(q => q.innerText = 0);
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
